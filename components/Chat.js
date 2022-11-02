@@ -1,45 +1,19 @@
-import React from "react";
-import { GiftedChat } from "react-native-gifted-chat";
-export default class Chat extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            messages: [],
-        };
-    }
+// import React from 'react';
+// import { View, Text } from 'react-native';
 
-    componentDidMount() {
-        this.setState({
-            messages: [
-                {
-                    _id: 1,
-                    text: "Hello developer",
-                    createdAt: new Date(),
-                    user: {
-                        _id: 2,
-                        name: "hello world",
-                        avatar: " / ",
-                    },
-                },
-            ],
-        });
-    }
+// export default class Chat extends React.Component {
+//     componentDidMount(){
+//         let name = this.props.route.params.name; // OR ...
+//         // let { name } = this.props.route.params;
+//         this.props.navigation.setOptions({ title: name });
+//     }
 
-    onSend(messages = []) {
-        this.setState((previousState) => ({
-            messages: GiftedChat.append(previousState.messages, messages),
-        }));
-    }
+//     render() {
 
-    render() {
-        return (
-            <GiftedChat
-                messages={this.state.messages}
-                onSend={(messages) => this.onSend(messages)}
-                user={{
-                    _id: 1,
-                }}
-            />
-        );
-    }
-}
+//         return (
+//             <View>
+//             {/* Rest of the UI */}
+//             </View>
+//         );
+//     };
+// }

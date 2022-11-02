@@ -18,7 +18,7 @@ export default class Chat extends React.Component {
                     createdAt: new Date(),
                     user: {
                         _id: 2,
-                        name: "React Native",
+                        name: "hello world",
                         avatar: " / ",
                     },
                 },

@@ -1,28 +1,46 @@
 import React from "react";
-import { View, Text, Button, TextInput, StyleSheet } from "react-native";
+import { GiftedChat } from "react-native-gifted-chat";
 
-export default class Start extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { name: "" };
+export default class Chat extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            messages: [],
+        };
     }
+
+    componentDidMount() {
+        this.setState({
+            messages: [
+                {
+                    _id: 1,
+                    text: "Hello developer",
+                    createdAt: new Date(),
+                    user: {
+                        _id: 2,
+                        name: "React Native",
+                        avatar: "https://placeimg.com/140/140/any",
+                    },
+                },
+            ],
+        });
+    }
+
+    onSend(messages = []) {
+        this.setState((previousState) => ({
+            messages: GiftedChat.append(previousState.messages, messages),
+        }));
+    }
+
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                <Text>Hello Screen1!</Text>
-                <TextInput
-                    style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-                    onChangeText={(name) => this.setState({ name })}
-                    value={this.state.name}
-                    placeholder="Type here ..."
-                />
-                <Button
-                    title="Go to Chat"
-                    onPress={() =>
-                        this.props.navigation.navigate("Chat", { name: this.state.name })
-                    }
-                />
-            </View>
+            <GiftedChat
+                messages={this.state.messages}
+                onSend={(messages) => this.onSend(messages)}
+                user={{
+                    _id: 1,
+                }}
+            />
         );
     }
 }

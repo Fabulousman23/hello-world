@@ -1,179 +1,200 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-    StyleSheet,
-    View,
-    Text,
-    TextInput,
-    ImageBackground,
-    TouchableOpacity,
+  ImageBackground,
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  TextInput,
+  Pressable,
+  TouchableOpacity,
 } from 'react-native';
+import BackgroundImage from '../assets/background-image.png';
 
-// Define colors for background color selection
-const backgroundColors = {
+export default class Start extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: '',
+    };
+  }
+
+  changeBgColor = (newColor) => {
+    this.setState({ bgColor: newColor });
+  };
+
+  colors = {
     black: '#090C08',
     purple: '#474056',
     grey: '#8A95A5',
-    green: '#B9C6AE',
-};
+    green: '#1DA01B',
+  };
 
-export default class Start extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { name: '', color: '' };
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <ImageBackground
-                    source={require('../assets/logo-og.png')}
-                    style={styles.image}
-                >
-                    <Text style={styles.title}>Chat App</Text>
-                    <View style={styles.startWrapper}>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(name) => this.setState({ name })}
-                            value={this.state.name}
-                            placeholder="Your Name"
-                        />
-                        <View style={styles.colorWrapper}>
-                            <Text style={styles.colorText}>Choose Background Color:</Text>
-                            <View style={styles.colors}>
-                                <TouchableOpacity
-                                    style={[
-                                        styles.color,
-                                        { backgroundColor: backgroundColors.black },
-                                    ]}
-                                    onPress={() =>
-                                        this.setState({ color: backgroundColors.black })
-                                    }
-                                />
-                                <TouchableOpacity
-                                    style={[
-                                        styles.color,
-                                        { backgroundColor: backgroundColors.purple },
-                                    ]}
-                                    onPress={() =>
-                                        this.setState({ color: backgroundColors.purple })
-                                    }
-                                />
-                                <TouchableOpacity
-                                    style={[
-                                        styles.color,
-                                        { backgroundColor: backgroundColors.grey },
-                                    ]}
-                                    onPress={() =>
-                                        this.setState({ color: backgroundColors.grey })
-                                    }
-                                />
-                                <TouchableOpacity
-                                    style={[
-                                        styles.color,
-                                        { backgroundColor: backgroundColors.green },
-                                    ]}
-                                    onPress={() =>
-                                        this.setState({ color: backgroundColors.green })
-                                    }
-                                />
-                            </View>
-                        </View>
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() =>
-                                this.props.navigation.navigate('Chat', {
-                                    name: this.state.name,
-                                    color: this.state.color,
-                                })
-                            }
-                        >
-                            <Text style={styles.buttonText}>Start Chatting</Text>
-                        </TouchableOpacity>
-                    </View>
-                </ImageBackground>
+  render() {
+    return (
+      <View style={styles.container}>
+        <ImageBackground
+          source={BackgroundImage}
+          resizeMode="cover"
+          style={styles.backgroundImage}
+        >
+          <View style={styles.appTitle}>
+            <Text style={styles.title}>Chat</Text>
+          </View>
+          <View style={styles.contentBox}>
+            <View style={styles.inputBox}>
+              <TextInput
+                onChangeText={(text) => this.setState({ name: text })}
+                value={this.state.name}
+                placeholder="Your Name"
+              />
             </View>
-        );
-    }
+
+            <View style={styles.colorBox}>
+              <Text style={styles.chooseColorText}>
+                {' '}
+                Choose Background Color:{' '}
+              </Text>
+            </View>
+
+            <View style={styles.colorArray}>
+              <TouchableOpacity
+                style={styles.color1}
+                onPress={() => this.changeBgColor(this.colors.black)}
+              ></TouchableOpacity>
+              <TouchableOpacity
+                style={styles.color2}
+                onPress={() => this.changeBgColor(this.colors.purple)}
+              ></TouchableOpacity>
+              <TouchableOpacity
+                style={styles.color3}
+                onPress={() => this.changeBgColor(this.colors.grey)}
+              ></TouchableOpacity>
+              <TouchableOpacity
+                style={styles.color4}
+                onPress={() => this.changeBgColor(this.colors.green)}
+              ></TouchableOpacity>
+            </View>
+
+            <Pressable
+              style={styles.button}
+              onPress={() =>
+                this.props.navigation.navigate('Chat', {
+                  name: this.state.name,
+                  bgColor: this.state.bgColor,
+                })
+              }
+            >
+              <Text style={styles.buttonText}>Start Chatting</Text>
+            </Pressable>
+          </View>
+        </ImageBackground>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
+  container: {
+    flex: 1,
+  },
 
-    image: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        resizeMode: 'cover',
-        paddingVertical: '6%',
-    },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 
-    title: {
-        fontSize: 45,
-        fontWeight: '600',
-        color: '#FFFFFF',
-        paddingVertical: '15%',
-    },
+  appTitle: {
+    height: '40%',
+    width: '88%',
+    alignItems: 'center',
+  },
 
-    startWrapper: {
-        backgroundColor: 'white',
-        height: '44%',
-        width: '88%',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingVertical: '6%',
-    },
+  title: {
+    fontSize: 45,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
 
-    input: {
-        fontSize: 16,
-        fontWeight: '300',
-        color: '#757083',
-        opacity: 50,
-        height: 60,
-        width: '88%',
-        borderColor: 'lightgrey',
-        borderWidth: 2,
-        borderRadius: 5,
-        padding: '5%',
-    },
+  contentBox: {
+    backgroundColor: '#FFFFFF',
+    height: '46%',
+    width: '88%',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    borderRadius: 1,
+  },
 
-    colorWrapper: {
-        width: '88%',
-        justifyContent: 'center',
-    },
+  inputBox: {
+    borderWidth: 2,
+    borderRadius: 1,
+    borderColor: 'grey',
+    width: '88%',
+    height: 60,
+    paddingLeft: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 
-    colorText: {
-        fontSize: 16,
-        fontWeight: '300',
-        color: '#757083',
-        opacity: 100,
-    },
+  colorBox: {
+    marginRight: 'auto',
+    paddingLeft: 15,
+    width: '88%',
+  },
 
-    colors: {
-        flexDirection: 'row',
-    },
+  chooseColorText: {
+    fontSize: 16,
+    fontWeight: '300',
+    color: '#757083',
+    opacity: 100,
+  },
 
-    color: {
-        borderRadius: 20,
-        width: 40,
-        height: 40,
-        marginTop: 10,
-        marginRight: 25,
-    },
+  colorArray: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
+  },
 
-    button: {
-        height: 60,
-        width: '88%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#757083',
-    },
+  color1: {
+    backgroundColor: '#090C08',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
 
-    buttonText: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: '#FFFFFF',
-    },
+  color2: {
+    backgroundColor: '#474056',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+
+  color3: {
+    backgroundColor: '#8A95A5',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+
+  color4: {
+    backgroundColor: '#B9C6AE',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+
+  button: {
+    width: '88%',
+    height: 70,
+    borderRadius: 8,
+    backgroundColor: '#1D6085',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#757083',
+  },
+
+  buttonText: { color: '#FFFFFF', fontSize: 16, fontWeight: '600' },
 });

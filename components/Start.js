@@ -9,7 +9,7 @@ import {
   Pressable,
   TouchableOpacity,
 } from 'react-native';
-import BackgroundImage from '../assets/background-image.png';
+import BackgroundImage from './assets/background-image.png';
 
 export default class Start extends React.Component {
   constructor(props) {

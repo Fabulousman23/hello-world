@@ -1,7 +1,15 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
+import { GiftedChat } from 'react-native-gifted-chat';
+
 
 export default class Chat extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            messages: [],
+        }
+    }
     render() {
         let name = this.props.route.params.name;
         this.props.navigation.setOptions({ title: name });

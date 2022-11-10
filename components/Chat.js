@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, Button, View, Platform, KeyboardAvoidingView } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    Platform,
+    KeyboardAvoidingView,
+} from 'react-native';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 
 

@@ -23,7 +23,13 @@ export default class Chat extends React.Component {
                         avatar: 'https://placeimg.com/140/140/any',
                     },
                 },
-            ],
+                {
+                    _id: 2,
+                    text: 'This is a system message',
+                    createdAt: new Date(),
+                    system: true,
+                },
+            ]
         })
     }
     onSend(messages = []) {
@@ -32,6 +38,18 @@ export default class Chat extends React.Component {
         }))
     }
 
+    // renderBubble(props) {
+    //     return (
+    //         <Bubble
+    //             {...props}
+    //             wrapperStyle={{
+    //                 right: {
+    //                     backgroundColor: '#000',
+    //                 }
+    //             }}
+    //         />
+    //     )
+    // }
 
     render() {
         let name = this.props.route.params.name;

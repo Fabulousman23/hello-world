@@ -77,6 +77,7 @@ export default class Chat extends React.Component {
                     user={{
                         _id: 1,
                     }}
+
                 />
                 {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
                 }

@@ -21,7 +21,7 @@ export default class Chat extends React.Component {
             messages: [
                 {
                     _id: 1,
-                    text: 'Hello developer',
+                    text: 'Welcome',
                     createdAt: new Date(),
                     user: {
                         _id: 2,
@@ -91,4 +91,9 @@ export default class Chat extends React.Component {
         );
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+});
 

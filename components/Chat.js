@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
+import { View, Platform, KeyboardAvoidingView } from 'react-native';
 
 
 export default class Chat extends React.Component {
@@ -38,18 +39,21 @@ export default class Chat extends React.Component {
         }))
     }
 
-    // renderBubble(props) {
-    //     return (
-    //         <Bubble
-    //             {...props}
-    //             wrapperStyle={{
-    //                 right: {
-    //                     backgroundColor: '#000',
-    //                 }
-    //             }}
-    //         />
-    //     )
-    // }
+    renderBubble(props) {
+        return (
+            <Bubble
+                {...props}
+                wrapperStyle={{
+                    right: {
+                        backgroundColor: '#000',
+                    },
+                    left: {
+                        backgroundColor: '#fff',
+                    },
+                }}
+            />
+        );
+    }
 
     render() {
         let name = this.props.route.params.name;
@@ -68,13 +72,15 @@ export default class Chat extends React.Component {
             >
                 <Text>Welcome to Chat! {name}</Text>
                 <GiftedChat
+                    renderBubble={this.renderBubble.bind(this)}
                     messages={this.state.messages}
                     onSend={messages => this.onSend(messages)}
                     user={{
                         _id: 1,
                     }}
                 />
-
+                {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
+                }
             </View>
         );
     }

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "chat",
-    "slug": "chat",
+    "name": "hello-world2",
+    "slug": "hello-world2",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

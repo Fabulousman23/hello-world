@@ -18,7 +18,7 @@ export default class Chat extends React.Component {
         super();
         this.state = {
             messages: [],
-            uid: 0,
+            uid: null,
             loggedInText: "Please wait, you are getting logged in",
             isConnected: false,
             image: null,
@@ -97,9 +97,9 @@ export default class Chat extends React.Component {
                 console.log(this.state.isConnected);
 
                 // Listen to autentication events
-                this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
+                this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
                     if (!user) {
-                        firebase.auth().signInAnonymously();
+                        await firebase.auth().signInAnonymously();
                     }
                     this.setState({
                         uid: user.uid,

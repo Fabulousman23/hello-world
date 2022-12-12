@@ -1,5 +1,7 @@
 ## Description![image](https://user-images.githubusercontent.com/68301968/207066868-3faac202-cc7a-4c24-b167-dba248cdb285.jpeg)
 
+
+
 This is a native mobile app built using React Native that allows users to enter a chat room, then send messages, images, and their location.
 
 ## Objective

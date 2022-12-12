@@ -1,6 +1,4 @@
-## [image](https://user-images.githubusercontent.com/68301968/207066868-3faac202-cc7a-4c24-b167-dba248cdb285.jpeg)
-
-## CHAT APP
+## CHAT APP ## [image](https://user-images.githubusercontent.com/68301968/207066868-3faac202-cc7a-4c24-b167-dba248cdb285.jpeg)
 
 ## Description! 
 
